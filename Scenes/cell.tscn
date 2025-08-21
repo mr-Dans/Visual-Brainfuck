@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4kil8ov6d75a"]
+
+[ext_resource type="Script" uid="uid://d25grndu2poxw" path="res://Scripts/cell.gd" id="1_efq80"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh0nt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label"]
+custom_minimum_size = Vector2(30, 40)
+anchors_preset = -1
+anchor_right = 0.0347222
+anchor_bottom = 0.0617284
+offset_bottom = -16.9999
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_yh0nt")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_efq80")
+metadata/_edit_use_anchors_ = true

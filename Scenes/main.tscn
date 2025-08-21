@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcp176x6dakwc"]
+
+[ext_resource type="Script" uid="uid://csqpyttrv70fy" path="res://Scripts/main.gd" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://cu6tuf0utbml2" path="res://Scripts/cells.gd" id="2_8gbba"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.229112, 0.229112, 0.229112, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo1nx")
+
+[node name="Output" type="Label" parent="."]
+layout_mode = 2
+anchor_left = 0.0277778
+anchor_top = 0.567901
+anchor_right = 0.972222
+anchor_bottom = 0.716049
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xm2m")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0277778
+anchor_top = 0.728395
+anchor_right = 0.972222
+anchor_bottom = 0.790123
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="run_btn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Run code "
+
+[node name="stp_btn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Step code"
+
+[node name="clr_btn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Clear code"
+
+[node name="Delay" type="HSlider" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+value = 0.1
+tick_count = 10
+ticks_on_borders = true
+
+[node name="dPerc" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.08
+text = "0.0 S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Code" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0277778
+anchor_top = 0.802469
+anchor_right = 0.972222
+anchor_bottom = 1.0
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 128)
+placeholder_text = "Enter code..."
+
+[node name="Cells" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.395062
+offset_left = 32.0
+offset_right = -32.0
+grow_horizontal = 2
+columns = 32
+script = ExtResource("2_8gbba")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="HBoxContainer/run_btn" to="." method="run_code"]
+[connection signal="pressed" from="HBoxContainer/stp_btn" to="." method="step_code"]
+[connection signal="pressed" from="HBoxContainer/clr_btn" to="." method="clear_code"]
+[connection signal="value_changed" from="HBoxContainer/Delay" to="." method="_on_delay_value_changed"]
+[connection signal="mouse_entered" from="Code" to="." method="_on_code_mouse_entered"]
+[connection signal="mouse_exited" from="Code" to="." method="_on_code_mouse_exited"]
